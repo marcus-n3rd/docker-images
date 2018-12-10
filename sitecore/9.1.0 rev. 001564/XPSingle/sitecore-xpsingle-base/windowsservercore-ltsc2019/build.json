@@ -4,5 +4,33 @@
 		"9.1.0.001564-windowsservercore-ltsc2019"
 	],
 	"memory": "8GB",
-    "assets": []
+    "assets": [
+        {
+			"SourcePath": "Sitecore 9.1.0 rev. 001564 (WDP XP0 packages).zip",
+			"Transforms":[
+				{"Type": "UnzipTransform", "TargetPath": "Sc9.1.0.001564_WDP_XP0"}
+			],
+			"Assets": [
+				{
+					"SourcePath": "XP0 Configuration files 9.1.0 rev. 001564.zip",
+					"Transforms":[
+						{"Type": "UnzipTransform", "TargetPath": "XP0 Configuration files 9.1.0 rev. 001564"}
+					],
+					"assets": [
+						{
+							"SourcePath": "Prerequisites.json",
+							"Transforms":[
+								{
+									"Type": "PowerShellScriptTransform", 
+									"PSScript": "Transforms\\Prerequisites.ps1", 
+									"TargetPath": "Prerequisites.json"
+								}
+							],
+							"TargetPath": "ExternalAssets"
+						}
+					]
+				}
+			]
+		}
+	]
 }
