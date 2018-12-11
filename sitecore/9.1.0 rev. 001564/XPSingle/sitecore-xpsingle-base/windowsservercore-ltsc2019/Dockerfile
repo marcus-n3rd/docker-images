@@ -29,10 +29,10 @@ RUN `
 `
 ------------------------------------------------------------------------------------------------------------------------#> `
 `
-	Write-Host "Downloading SQL Server. This will take some time as it is over 1.67GB..." `
+	Write-Host "Downloading SQL Server. This will take some time as it is over 1.67GB..."; `
 	Invoke-WebRequest -Uri https://go.microsoft.com/fwlink/?linkid=840944 -OutFile SQL.box; `
     Invoke-WebRequest -Uri https://go.microsoft.com/fwlink/?linkid=840945 -OutFile SQL.exe; `
-	Write-Host "Installing SQL Server..." `
+	Write-Host "Installing SQL Server..."; `
     Start-Process -Wait -FilePath .\SQL.exe -ArgumentList /qs, /x:setup; `
     .\setup\setup.exe /q /ACTION=Install /INSTANCENAME=MSSQLSERVER /FEATURES=SQLEngine /UPDATEENABLED=0 /SQLSVCACCOUNT='NT AUTHORITY\System' /SQLSYSADMINACCOUNTS='BUILTIN\ADMINISTRATORS' /TCPENABLED=1 /NPENABLED=0 /IACCEPTSQLSERVERLICENSETERMS; `
     Remove-Item -Recurse -Force SQL.exe, SQL.box, setup `
